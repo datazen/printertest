@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Printer Tests
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Printer Tests</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="main-container" class="container">
+
+    <div class="star-container w-100">
+      <div class="row">
+        <div class="col">
+          <h1>Star Micronics</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col relative">
+          <button class="btn btn-primary btn-lg" (click)="starSearch()">
+            <span *ngIf="!searching">Search for Printers</span>
+            <span *ngIf="searching">Searching <ion-spinner color="light" class="ml-2 spinner" name="lines">
+              </ion-spinner></span>
+          </button>
+          <div *ngIf="printing" class="printing-text badge badge-danger">PRINTING</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col mt-2 mb-2">
+          <div class="w-100 line"></div>
+        </div>
+      </div>
+
+      <div *ngIf="printerError" class="row">
+        <div class="col">
+          <div class="alert alert-danger">{{printerErrorMsg}}</div>
+        </div>
+      </div>
+
+      <div class="row mb-4" *ngFor="let printer of starPrinters">
+        <div class="col">
+          <button class="btn btn-warning btn-lg" [disabled]="!printing"
+            (click)="printTestToStarPrinter(printer)">{{printer.modelName}}
+            {{printer.portName}}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="epson-container mt-5">
+      <div class="row">
+        <div class="col">
+          <h1>Epson</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col relative">
+          <button class="btn btn-primary btn-lg" (click)="epsonSearch()">
+            <span *ngIf="!searching2">Search for Printers</span>
+            <span *ngIf="searching2">Searching <ion-spinner color="light" class="ml-2 spinner" name="lines">
+              </ion-spinner></span>
+          </button>
+          <div *ngIf="printing2" class="printing-text badge badge-danger">PRINTING</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col mt-2 mb-2">
+          <div class="w-100 line"></div>
+        </div>
+      </div>
+
+      <div *ngIf="printerError2" class="row">
+        <div class="col">
+          <div class="alert alert-danger">{{printerErrorMsg2}}</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          {{epsonPrinters | json}}
+        </div>
+      </div>
+
+      <!-- <div class="row mb-4" *ngFor="let printer2 of epsonPrinters">
+        <div class="col">
+          <button class="btn btn-warning btn-lg" [disabled]="!printing2"
+            (click)="printTestToEpsonPrinter(printer2)">NAME</button>
+        </div>
+      </div> -->
+    </div>
+
+  </div>
+</ion-content>
