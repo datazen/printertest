@@ -1,2 +1,0 @@
-# printertest
-mobile printer test
